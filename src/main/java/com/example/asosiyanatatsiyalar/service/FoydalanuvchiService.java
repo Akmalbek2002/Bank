@@ -10,6 +10,7 @@ import com.example.asosiyanatatsiyalar.repository.HisobRaqamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class FoydalanuvchiService {
             foydalanuvchi.setFamiliya(foydalanuvchiDto.getFamiliya());
             foydalanuvchi.setParsportRaqami(foydalanuvchiDto.getPasportRaqami());
             foydalanuvchi.setManzili(foydalanuvchiDto.getManzili());
+            foydalanuvchi.setTugulganSana(LocalDate.parse(foydalanuvchiDto.getSana()));
             List<HisobRaqam> hisobRaqamList=new ArrayList<>();
             for (HisobRaqamDto hisobRaqamDto : foydalanuvchiDto.getHisobRaqamDtoList()) {
                 HisobRaqam hisobRaqam=new HisobRaqam();
@@ -38,6 +40,8 @@ public class FoydalanuvchiService {
                 hisobRaqam.setKartaRaqami(hisobRaqamDto.getKartaRaqami());
                 hisobRaqam.setAmalQilishMuddati(hisobRaqamDto.getAmalQilishMuddati());
                 hisobRaqam.setBankNomi(hisobRaqamDto.getBankNomi());
+                hisobRaqam.setBalans(0);
+                hisobRaqam.setHolat(hisobRaqamDto.isHolat());
                 hisobRaqam.setFoydalanuvchi(foydalanuvchi);
                 hisobRaqamList.add(hisobRaqam);
             }
